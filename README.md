@@ -5,7 +5,7 @@ WinterCG proposal for standardizing CLI APIs.
 
 ## Explainer
 
-This explainer is a WIP draft, as such may drastically change in the future. This is primarily focused on what should be exposed and how in "V1". There may be a "V2" in future with more high-level advanced APIs like parsing arguments, but for now this is only [ensuring such APIs could be implemented in userland](https://github.com/CanadaHonk/proposal-cli-api/issues/6).
+This explainer is a WIP draft, as such may drastically change in the future. This is primarily focused on what should be exposed and how. There may be a "V2" in future with more high-level APIs like parsing arguments, but for now this is only [ensuring such APIs could be implemented in userland](https://github.com/CanadaHonk/proposal-cli-api/issues/6).
 
 Process-level information such as arguments and environment variables are commonly used in many CLI applications. Currently, JS runtimes do not have any standardized method to get this information:
 - Node: `process.argv`<sup>1</sup>, `process.env`<sup>3</sup>
@@ -16,7 +16,7 @@ Process-level information such as arguments and environment variables are common
 
 ### Arguments
 
-Arguments should not be exposed raw, instead they [should have "runtime args" removed](https://github.com/CanadaHonk/proposal-cli-api/issues/3). "Runtime args" are any arguments which are specific to the runtime itself, eg runtime binary path, script path, and runtime arguments. For example, `Deno.args` currently does this while `process.argv` does not. Runtimes may wish to expose the raw arguments themselves via their own API, but that is intentionally not standardized in this proposal.
+Arguments should not be exposed raw, instead they [should have "runtime args" removed](https://github.com/CanadaHonk/proposal-cli-api/issues/3). "Runtime args" are any arguments which are specific to the runtime itself: runtime binary path, script path, and runtime arguments. For example, `Deno.args` currently does this while `process.argv` does not. Runtimes may wish to expose the raw arguments themselves via their own API, but that is intentionally not standardized in this proposal.
 
 #### Examples
 
@@ -50,6 +50,6 @@ The following metadata about the terminal should be exposed:
 
 ### Exiting
 
-There should be an `exit` function, also optionally allowing an exit code number defaulting to `0` (`exit(code?: number)`).
+There should be an `exit` function, optionally allowing an exit code number defaulting to `0` (`exit(code?: number)`).
 
 // todo: exit hooks/listeners
