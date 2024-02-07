@@ -12,21 +12,21 @@ Process-level information such as arguments and environment variables are common
 - Deno: `Deno.args`<sup>2</sup>, `Deno.env`<sup>4</sup>
 - Bun: `Bun.argv`<sup>1</sup>, `Bun.env`<sup>3</sup>
 
-<sup>(1: Bare arguments including runtime args. 2: Arguments excluding runtime args. 3: Bare object. 4: Map-like object)</sup>
+<sup>(0: Bare arguments including binary path and script path, excluding options consumed. 2: Arguments excluding runtime args. 3: Bare object. 4: Map-like object)</sup>
 
 ### Arguments
 
-Arguments should not be exposed raw, instead they [should have "runtime args" removed](https://github.com/CanadaHonk/proposal-cli-api/issues/3). "Runtime args" are any arguments which are specific to the runtime itself: runtime binary path, script path, and runtime arguments. For example, `Deno.args` currently does this while `process.argv` does not. Runtimes may wish to expose the raw arguments themselves via their own API, but that is intentionally not standardized in this proposal.
+Arguments should not be exposed raw, instead they [should have "runtime args" removed](https://github.com/CanadaHonk/proposal-cli-api/issues/3). "Runtime args" are any arguments which are specific to the runtime itself: runtime binary path, script path, and runtime arguments. For example, `Deno.args` currently excludes these while `process.argv` has the runtime binary path and script path. Runtimes may wish to expose the raw arguments themselves via their own API, but that is intentionally not standardized in this proposal.
 
 #### Examples
 
-| argv | Expected |
-| ---- | -------- |
-| `runtime script.js` | `[]` |
-| `runtime script.js ecmascript` | `[ 'ecmascript' ]` |
-| `runtime script.js one two three` | `[ 'one', 'two', 'three' ]` |
-| `runtime --cool-runtime-argument script.js foo bar` | `[ 'foo', 'bar' ]` |
-| `runtime script.js --cool-runtime-argument foo bar` | `[ '--cool-runtime-argument', 'foo', 'bar' ]` |
+| Raw arguments | Expected | `process.argv` |
+| ---- | -------- | -------------- |
+| `runtime script.js` | `[]` | `[ '/bin/runtime', '/tmp/script.js' ]` |
+| `runtime script.js ecmascript` | `[ 'ecmascript' ]` | `[ '/bin/runtime', '/tmp/script.js', 'ecmascript' ]` |
+| `runtime script.js one two three` | `[ 'one', 'two', 'three' ]` | `[ '/bin/runtime', '/tmp/script.js', 'one', 'two', 'three' ]` |
+| `runtime --cool-runtime-argument script.js foo bar` | `[ 'foo', 'bar' ]` | `[ '/bin/runtime', '/tmp/script.js', 'foo', 'bar' ]` |
+| `runtime script.js --cool-runtime-argument foo bar` | `[ '--cool-runtime-argument', 'foo', 'bar' ]` | `[ '/bin/runtime', '/tmp/script.js', '--cool-runtime-argument', 'foo', 'bar' ]` |
 
 ### Environment Variables
 
@@ -40,6 +40,12 @@ The following metadata about the terminal should be exposed:
 
 [// todo: exposed as what?](https://github.com/CanadaHonk/proposal-cli-api/issues/9)
 
+### Exiting
+
+There should be an `exit` function, optionally allowing an exit code number defaulting to `0` (`exit(code?: number)`).
+
+// todo: exit hooks/listeners
+
 ### Stdout
 
 // todo
@@ -47,9 +53,3 @@ The following metadata about the terminal should be exposed:
 ### Stdin
 
 // todo
-
-### Exiting
-
-There should be an `exit` function, optionally allowing an exit code number defaulting to `0` (`exit(code?: number)`).
-
-// todo: exit hooks/listeners
