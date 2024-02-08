@@ -117,3 +117,19 @@ There should be an `exit` function, optionally allowing an exit code number defa
 ### Stdin
 
 // todo
+
+## Why standardize?
+
+Currently, if you want the same script which uses arguments or other CLI APIs to work across runtimes, you have to add specific code for each runtime:
+
+```js
+let args = [];
+
+if (typeof process !== 'undefined') args = process.argv.slice(2);
+if (typeof Deno !== 'undefined') args = Deno.args.slice();
+// ...
+```
+
+While this could be helped with a library (boilerplate :/) or by more runtimes implementing `process` (not a standard :/), WinterCG looks like a good place to really standardize these APIs.
+
+For selfish (@CanadaHonk) reasons, I was looking at adding these APIs to my JS engine+runtime and didn't know how I should expose them, so started this proposal :)
