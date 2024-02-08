@@ -33,13 +33,13 @@ Arguments should not be exposed raw, instead they [should have "runtime args" re
 Environment variables should be exposed as a exotic object with getters/setters/deleters as specified below. This behaves similar to `process.env`, but intentionally stricter.
 
 > [!IMPORTANT]
-> This section is a draft of a **simplified** ES-like spec to detail the concept and is [under discussion](https://github.com/CanadaHonk/proposal-cli-api/issues/3). This should probably be moved to a more official/detailed spec file.
+> This section is a draft of a **simplified** ES-like spec to detail the concept and is [under discussion](https://github.com/CanadaHonk/proposal-cli-api/issues/3). This should probably be moved to a separate spec file.
 
 #### EnvironmentVariables [[Get]] ( *P* )
 
 The EnvironmentVariables getter gets the given environment variable in a [host-defined](https://tc39.es/ecma262/#host-defined) manner. It performs the following steps when called:
 
-1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), throw a **TypeError** exception.
+1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), return **undefined**.
 1. If, checking in a [host-defined](https://tc39.es/ecma262/#host-defined) manner, the environment variable *P* is set, then
     1. Return the value of the environment variable *P* in a [host-defined](https://tc39.es/ecma262/#host-defined) manner.
 1. Return **undefined**.
@@ -61,7 +61,7 @@ The EnvironmentVariables [[GetOwnProperty]] internal method returns a [normal co
 
 The EnvironmentVariables setter sets the given environment variable in a [host-defined](https://tc39.es/ecma262/#host-defined) manner. It performs the following steps when called:
 
-1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), throw a **TypeError** exception.
+1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), return **undefined**.
 1. Let *value* be ? [ToString](https://tc39.es/ecma262/#sec-tostring)(*V*).
 1. Set the environment variable *P* to *value* in a [host-defined](https://tc39.es/ecma262/#host-defined) manner.
 1. Return **true**.
@@ -70,7 +70,7 @@ The EnvironmentVariables setter sets the given environment variable in a [host-d
 
 The EnvironmentVariables deleter unsets the given environment variable in a [host-defined](https://tc39.es/ecma262/#host-defined) manner. It performs the following steps when called:
 
-1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), throw a **TypeError** exception.
+1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), return **undefined**.
 1. If, checking in a [host-defined](https://tc39.es/ecma262/#host-defined) manner, the environment variable *P* is set, then
   1. Unset the environment variable *P* in a [host-defined](https://tc39.es/ecma262/#host-defined) manner.
 1. Return **true**.
