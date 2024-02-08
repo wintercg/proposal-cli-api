@@ -86,6 +86,15 @@ The EnvironmentVariables deleter unsets the given environment variable fom the [
 > [!NOTE]
 > Set and unset environment variables both return **true** for deletion.
 
+#### EnvironmentVariables [[HasProperty]] ( *P* )
+
+The EnvironmentVariables [[HasProperty]] internal method checks if the given environment variable is set in the [host](https://tc39.es/ecma262/#host) in a standard manner. It performs the following steps when called:
+
+1. Let *name* be ? [NormalizeName](#normalizename-name-)(*P*).
+1. If the [host](https://tc39.es/ecma262/#host) has the environment variable *name* set, then
+    1. Return **true**.
+1. Return **false**.
+
 #### EnvironmentVariables [[OwnPropertyKeys]] ( )
 
 The EnvironmentVariables [[OwnPropertyKeys]] internal method returns a list of set environment variables from the [host](https://tc39.es/ecma262/#host) in a standard manner. It performs the following steps when called:
@@ -96,7 +105,7 @@ The EnvironmentVariables [[OwnPropertyKeys]] internal method returns a list of s
 > For EnvironmentVariables we intentionally use [[OwnPropertyKeys]] instead of newer Iterator, entries, etc as there could be environment variables with those names (even if unlikely). Ideally `Object.keys(CLI.env)`, `for (const name in CLI.env)`, `{ ...CLI.env }` should all work from these definitions.
 
 > [!NOTE]
-> For now, [[DefineOwnProperty]], [[HasProperty]], and more are left knowingly unspecified.
+> For now, [[DefineOwnProperty]], and more are left knowingly unspecified.
 
 
 ### Terminal Metadata
