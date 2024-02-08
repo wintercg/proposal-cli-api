@@ -20,10 +20,10 @@ Arguments should not be exposed raw, instead they [should have "runtime args" re
 
 #### Examples
 
-| Raw arguments | Expected | `process.argv` |
+| Raw arguments | Expected | `process.argv` (comparison) |
 | ---- | -------- | -------------- |
 | `runtime script.js` | `[]` | `[ '/bin/runtime', '/tmp/script.js' ]` |
-| `runtime script.js ecmascript` | `[ 'ecmascript' ]` | `[ '/bin/runtime', '/tmp/script.js', 'ecmascript' ]` |
+| `runtime script.js example` | `[ 'example' ]` | `[ '/bin/runtime', '/tmp/script.js', 'example' ]` |
 | `runtime script.js one two three` | `[ 'one', 'two', 'three' ]` | `[ '/bin/runtime', '/tmp/script.js', 'one', 'two', 'three' ]` |
 | `runtime --cool-runtime-argument script.js foo bar` | `[ 'foo', 'bar' ]` | `[ '/bin/runtime', '/tmp/script.js', 'foo', 'bar' ]` |
 | `runtime script.js --cool-runtime-argument foo bar` | `[ '--cool-runtime-argument', 'foo', 'bar' ]` | `[ '/bin/runtime', '/tmp/script.js', '--cool-runtime-argument', 'foo', 'bar' ]` |
@@ -34,11 +34,11 @@ Arguments should not be exposed raw, instead they [should have "runtime args" re
 
 ### Terminal Metadata
 
-The following metadata about the terminal should be exposed:
+The following metadata (capabilities/preferences) about the terminal should be exposed:
 - Whether the terminal is interactive or non-interactive
 - Whether color should be used or [avoided](https://no-color.org/)
 
-[// todo: exposed as what?](https://github.com/CanadaHonk/proposal-cli-api/issues/9)
+[// todo: exposed how?](https://github.com/CanadaHonk/proposal-cli-api/issues/9)
 
 ### Exiting
 
