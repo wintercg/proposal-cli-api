@@ -71,7 +71,7 @@ The EnvironmentVariables setter sets the given environment variable from the [ho
 
 1. Let *name* be ? [NormalizeName](#normalizename-name-)(*P*).
 1. Let *value* be ? [ToString](https://tc39.es/ecma262/#sec-tostring)(*V*).
-1. Set the environment variable *name* as *value* from the [host](https://tc39.es/ecma262/#host).
+1. Set the environment variable *name* to *value* in the [host](https://tc39.es/ecma262/#host).
 1. Return **true**.
 
 #### EnvironmentVariables [[Delete]] ( *P* )
@@ -80,7 +80,7 @@ The EnvironmentVariables deleter unsets the given environment variable fom the [
 
 1. Let *name* be ? [NormalizeName](#normalizename-name-)(*P*).
 1. If the [host](https://tc39.es/ecma262/#host) has the environment variable *name* set, then
-  1. Unset the environment variable *name* from the [host](https://tc39.es/ecma262/#host).
+  1. Unset the environment variable *name* in the [host](https://tc39.es/ecma262/#host).
 1. Return **true**.
 
 > [!NOTE]
