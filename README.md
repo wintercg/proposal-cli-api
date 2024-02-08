@@ -30,7 +30,7 @@ Arguments should not be exposed raw, instead they [should have "runtime args" re
 
 ### Environment Variables
 
-Environment variables should be exposed as a exotic (Proxy-like) object with getters/setters/deleters as specified below.
+Environment variables should be exposed as a exotic object with getters/setters/deleters as specified below.
 
 > [!IMPORTANT]
 > This section is a draft of a **simplified** ES-like spec to detail the concept and is [under discussion](https://github.com/CanadaHonk/proposal-cli-api/issues/3). This should probably be moved to a more official/detailed spec file.
