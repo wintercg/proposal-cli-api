@@ -54,7 +54,7 @@ The EnvironmentVariables [[GetOwnProperty]] internal method returns a [normal co
 1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), return **undefined**.
 1. If, checking in a [host-defined](https://tc39.es/ecma262/#host-defined) manner, the environment variable *P* is set, then
     1. Let *value* be the value of the environment variable *P* retrieved in a [host-defined](https://tc39.es/ecma262/#host-defined) manner.
-    1. Return the PropertyDescriptor { [[Value]]: *value*, [[Writable]]: false, [[Enumerable]]: true, [[Configurable]]: false }.
+    1. Return the PropertyDescriptor { [[Value]]: *value*, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }.
 1. Return **undefined**.
 
 #### EnvironmentVariables [[Set]] ( *P*, *V* )
