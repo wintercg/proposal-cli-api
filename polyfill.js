@@ -5,6 +5,7 @@
 // Implemented:
 // - args
 // - env
+// - exit
 
 const NAMESPACE = 'CLI';
 
@@ -18,10 +19,12 @@ if (typeof process !== 'undefined') {
   // process.argv already excludes arguments used by the runtime,
   // but still has the runtime binary path and script path.
   // process.env is mostly there but we are more strict with checks.
+  // process.exit is ~identical.
 
   const { argv, env } = process;
   globalThis[NAMESPACE] = {
     args: argv.slice(2),
+    exit: n => process.exit(n ?? 0),
     env: new Proxy({}, {
       get: (_, p) => {
         if (typeof p !== 'string') return undefined;
@@ -58,10 +61,12 @@ if (typeof process !== 'undefined') {
   // Deno.args is already as specified.
   // Deno.env is Map-like instead of Object-like
   // so we polyfill it into CLI.env as specified.
+  // Deno.exit is ~identical.
 
-  const { args, env } = Deno;
+  const { args, exit, env } = Deno;
   globalThis[NAMESPACE] = {
     args,
+    exit: n => exit(n ?? 0),
     env: new Proxy({}, {
       get: (_, p) => {
         if (typeof p !== 'string') return undefined;
@@ -101,6 +106,7 @@ if (typeof process !== 'undefined') {
 
   globalThis[NAMESPACE] = {
     args: [],
+    exit: () => {},
     env: new Proxy({}, {
       get: (_, p) => {
         if (typeof p !== 'string') return undefined;
