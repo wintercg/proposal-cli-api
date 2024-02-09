@@ -7,6 +7,10 @@
 // - env
 // - exit
 
+// Supported runtimes:
+// - Node, or other runtimes implementing `process` (Bun, etc)
+// - Deno
+
 const NAMESPACE = 'CLI';
 
 const ensureString = (v, badRet = undefined) => {
@@ -15,7 +19,7 @@ const ensureString = (v, badRet = undefined) => {
 };
 
 if (typeof process !== 'undefined') {
-  // Node or Node-compatible runtime (Bun, etc):
+  // Node, or other runtimes implementing `process` (Bun, etc):
   // process.argv already excludes arguments used by the runtime,
   // but still has the runtime binary path and script path.
   // process.env is mostly there but we are more strict with checks.
