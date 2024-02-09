@@ -72,7 +72,7 @@ The EnvironmentVariables deleter unsets the given environment variable in a [hos
 
 1. If *P* [is not a String](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type), return **false**.
 1. If, checking in a [host-defined](https://tc39.es/ecma262/#host-defined) manner, the environment variable *P* is set, then
-  1. Unset the environment variable *P* in a [host-defined](https://tc39.es/ecma262/#host-defined) manner.
+    1. Unset the environment variable *P* in a [host-defined](https://tc39.es/ecma262/#host-defined) manner.
 1. Return **true**.
 
 > [!NOTE]
