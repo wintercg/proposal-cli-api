@@ -134,6 +134,6 @@ if (typeof Deno !== 'undefined') args = Deno.args.slice();
 // ...
 ```
 
-While this could be helped with a library (boilerplate :/) or by more runtimes implementing `process` (not a standard :/), WinterCG looks like a good place to really standardize these APIs.
+While this could be helped with a library (boilerplate :/) or by more runtimes implementing `process` (not a standard :/), WinterCG looks like a good place to really standardize these APIs. The core goal of this is to make this CLI API become the default, the one used by most people and runtimes; even some runtimes which not interested in the entirety of WinterCG as they likely will want/need an API which does some of this scope anyway. This API should be good enough that people want to use it regardless of the bonus that it is specified and (in the future) standardized. (TL;DR: It is important we make this API great, not just specified.)
 
-For selfish (@CanadaHonk) reasons, I was looking at adding these APIs to my JS engine+runtime and didn't know how I should expose them, so started this proposal :^)
+For the origin and selfish (@CanadaHonk) reasons, I was looking at adding an arguments API to my JS engine+runtime and didn't know how I should expose them, so started this proposal :^)
