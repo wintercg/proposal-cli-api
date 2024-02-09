@@ -30,7 +30,7 @@ Arguments should not be exposed raw, instead they [should have "runtime args" re
 
 ### Environment Variables
 
-Environment variables should be exposed as a exotic object with getters/setters/deleters as specified below. This behaves similar to `process.env`, but intentionally stricter.
+Environment variables should be exposed as a exotic object with getter/setter/deleter/etc as specified below. This behaves similar to `process.env`, but strictly specified. It is also similar to `localStorage` in some aspects (getter/setter/deleter/etc for named access of an external resource).
 
 > [!IMPORTANT]
 > This section is a draft of a **simplified** ES-like spec to detail the concept and is [under discussion](https://github.com/CanadaHonk/proposal-cli-api/issues/3). This should probably be moved to a separate spec file.
@@ -98,6 +98,9 @@ The EnvironmentVariables [[OwnPropertyKeys]] internal method returns a list of s
 
 > [!NOTE]
 > For now, [[DefineOwnProperty]], and more are left knowingly unspecified.
+
+> [!NOTE]
+> Should we also have `get`/`set`/`has`/`delete` methods separately as well as getter/setter/etc?
 
 
 ### Terminal Metadata
