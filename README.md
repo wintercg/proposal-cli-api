@@ -1,11 +1,11 @@
 # CLI API Proposal
 WinterCG proposal for standardizing CLI APIs.
 
-### [Discussion on GitHub Issues](https://github.com/CanadaHonk/proposal-cli-api/issues)
+### [Discussion on GitHub Issues](https://github.com/wintercg/proposal-cli-api/issues)
 
 ## Explainer
 
-This explainer is a WIP draft, as such may drastically change in the future. This is primarily focused on what should be exposed and how. There may be a "V2" in future with more high-level APIs like parsing arguments, but for now this is only [ensuring such APIs could be implemented in userland](https://github.com/CanadaHonk/proposal-cli-api/issues/6).
+This explainer is a WIP draft, as such may drastically change in the future. This is primarily focused on what should be exposed and how. There may be a "V2" in future with more high-level APIs like parsing arguments, but for now this is only [ensuring such APIs could be implemented in userland](https://github.com/wintercg/proposal-cli-api/issues/6).
 
 Process-level information such as arguments and environment variables are commonly used in many CLI applications. Currently, JS runtimes do not have any standardized method to get this information:
 - Node: `process.argv`<sup>1</sup>, `process.env`<sup>3</sup>
@@ -16,7 +16,7 @@ Process-level information such as arguments and environment variables are common
 
 ### Arguments
 
-Arguments should not be exposed raw, instead they [should have "runtime args" removed](https://github.com/CanadaHonk/proposal-cli-api/issues/3). "Runtime args" are any arguments which are specific to the runtime itself: runtime binary path, script path, and runtime arguments. For example, `Deno.args` currently excludes these while `process.argv` has the runtime binary path and script path. Runtimes may wish to expose the raw arguments themselves via their own API, but that is intentionally not standardized in this proposal.
+Arguments should not be exposed raw, instead they [should have "runtime args" removed](https://github.com/wintercg/proposal-cli-api/issues/3). "Runtime args" are any arguments which are specific to the runtime itself: runtime binary path, script path, and runtime arguments. For example, `Deno.args` currently excludes these while `process.argv` has the runtime binary path and script path. Runtimes may wish to expose the raw arguments themselves via their own API, but that is intentionally not standardized in this proposal.
 
 #### Examples
 
@@ -33,7 +33,7 @@ Arguments should not be exposed raw, instead they [should have "runtime args" re
 Environment variables should be exposed as a exotic object with getter/setter/deleter/etc as specified below. This behaves similar to `process.env`, but strictly specified. It is also similar to `localStorage` in some aspects (getter/setter/deleter/etc for named access of an external resource).
 
 > [!IMPORTANT]
-> This section is a draft of a **simplified** ES-like spec to detail the concept and is [under discussion](https://github.com/CanadaHonk/proposal-cli-api/issues/3). This should probably be moved to a separate spec file.
+> This section is a draft of a **simplified** ES-like spec to detail the concept and is [under discussion](https://github.com/wintercg/proposal-cli-api/issues/3). This should probably be moved to a separate spec file.
 
 #### EnvironmentVariables [[Get]] ( *P* )
 
@@ -109,7 +109,7 @@ The following metadata (capabilities/preferences) about the terminal should be e
 - Whether the terminal is interactive or non-interactive
 - Whether color should be used or [avoided](https://no-color.org/)
 
-[// todo: exposed how?](https://github.com/CanadaHonk/proposal-cli-api/issues/9)
+[// todo: exposed how?](https://github.com/wintercg/proposal-cli-api/issues/9)
 
 ### Exiting
 

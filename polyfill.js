@@ -1,6 +1,6 @@
 // This is a not-production-ready polyfill of the WinterCG CLI API proposal.
 // The proposal is highly likely to have breaking changes in the future!
-// https://github.com/CanadaHonk/proposal-cli-api
+// https://github.com/wintercg/proposal-cli-api
 
 // Implemented:
 // - args
